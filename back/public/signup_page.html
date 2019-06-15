@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <!-- Required meta tags -->
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <style>
+            /*signup form */
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+.card-img{
+  
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+}
+/* SIgnup form ends */ 
+
+        </style>
+<title>TrekkIt - SignUp to host an event !</title>
+    </head>
+
+    <body>
+        <div class="card1 bg-dark text-white">
+            <img class="card-img" src="header-trekking.jpg" alt="Card image">
+            <div class="card-img-overlay">
+         
+              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">Last updated 3 mins ago</p> -->
+            </div>
+          </div>
+      <!-- The navigation bar starts -->
+    <!--  -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li ><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user" class="active"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
+    <!-- The navigation bar ends-->
+      <br>
+        <!--Signup form starts-->
+        <form method="POST"   action="http://localhost:4000/users" enctype="multipart/form-data" style="border:1px solid #ccc">
+          <div class="container">
+              <h1>Host an event</h1>
+              <p>Please fill in this form to create an event.</p> 
+                  <label><b>Name</b></label>
+                  <input type="text" id="leader" placeholder="Enter Your Name" name="leader" >
+
+                  <label><b>Trek Starting Point</b></label>
+                  <input type="text" id= "trek_start" placeholder="Enter Trek starting location" name="trek_start" >
+
+                  <label><b>Trek Ending Point</b></label>
+                  <input type="text" id= "trek_end" placeholder="Enter Trek ending location" name="trek_end" >
+
+                  <label><b>Meeting Address</b></label>
+                  <input type="text" id= "meeting_address" placeholder="Enter the meeting address" name="meeting_address" >
+
+                  <label><b>Upload trek picture</b></label>
+                  <input type="file" name="eventImage" id="avatar" >
+
+                  <label><b>Email</b></label>
+                  <input type="text" id= "email" placeholder="Enter your email" name="email" >
+
+                  <label><b>Enter the meeting date</b></label>
+                  <input type="text" id= "meeting_date" name="meeting_date" ><br><br>
+                  
+                  <label><b>Enter meeting time:   </b></label>
+                  <input type="text" id= "meeting_time" name="meeting_time" ><br><br>
+
+                  <label><b>Cost Per Head</b></label>
+                  <input type="number" id= "price" placeholder="Enter the cost per head" name="price" >
+                  
+                  <label ><b>Password</b></label>
+                  <input type="text" id="password" placeholder="Enter Password" name="password">
+                  
+                  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                  <button class="btn-btn-primary" type="submit" name="submit" value="signup" >signup</button>  
+          </div>
+    </form>
+<!--signup form ends-->
+
+         </body>
+</html>
+

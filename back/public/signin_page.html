@@ -1,0 +1,182 @@
+<html>
+    <head>
+         <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+        <style>
+            /*signup form */
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.submittbutton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: 98%;
+  padding: 10px 15px;
+  background-color: #f44336;
+  text-align:center;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 20%;
+  border-radius: none;;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    text-decoration: none;
+    width: 100%;
+  }
+}
+.card-img{
+  
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+}
+/* SIgnup form ends */ 
+        </style>
+<title>TrekkIt - Event Hosts SignIn !</title>
+    </head>
+
+    <body>
+       
+        <div class="card1 bg-dark text-white">
+            <img class="card-img" src="header-trekking.jpg" alt="Card image">
+            <div class="card-img-overlay">
+         
+              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">Last updated 3 mins ago</p> -->
+            </div>
+          </div>
+        <!--Signin form starts-->
+        <!-- The navigation bar starts -->
+    <!--  -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./public/index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li ><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in" class="active"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
+    <!-- The navigation bar ends-->
+      <br>
+        <form action="action_page.php">
+                <div class="imgcontainer">
+                          <img src="./avatar2.jpg" alt="Avatar" class="avatar">
+                </div>
+              
+                <div class="container">
+                          <label for="uname"><b>Email</b></label>
+                          <input type="text" placeholder="Enter Email" id="email" name="email" required>
+                      
+                          <label for="psw"><b>Password</b></label>
+                <input type="text" placeholder="Enter Password" id="password" name="password" required>
+            
+                
+                <input type="button" class="submittbutton" onclick="sendData();" value="Login">
+              
+                  
+                </div>
+              
+              
+
+                
+              </form>
+              
+<!--signin form ends-->
+              <script>
+  function sendData() {
+              console.log('jnvce');
+              var email = document.getElementById('email').value;
+              var password = document.getElementById('password').value;
+
+               //open page as response to login
+               let xhr2 = new XMLHttpRequest();
+               xhr2.addEventListener('load',function(){
+                    var k= (JSON.parse(this.responseText));
+                    console.log(k);
+                    var id=k._id;
+                    //creating get request to get data by event ID from joinees database
+                    var xhr1=new XMLHttpRequest();
+                    xhr1.addEventListener('load',function(){
+                      var r= (JSON.parse(this.responseText));
+                     console.log(r);
+                    });
+                    xhr1.open("GET", `http://localhost:4000/joiner/${id}`);
+                    xhr1.send();
+              });
+              xhr2.open("GET", `http://localhost:4000/event/login?email=${email}&password=${password}`, true)
+              xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+              xhr2.send();
+      }        
+              </script>
+    </body>
+</html>

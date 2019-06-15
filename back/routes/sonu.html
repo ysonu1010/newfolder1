@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+
+    /*=====/* The navigation menu */
+/* Style the navbar */
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+
+
+/* ==========================================*/
+
+/* BOXES*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* BOX BUTTONS  */
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+/* BOX BUTTONS ends  */
+
+/* ========BOXES ENDS================*/
+
+
+
+
+    </style>
+  
+    <title>Happy trekking !</title>
+  </head>
+
+
+
+  <body>
+    <h1>Happy trekking !</h1>
+    <!-- Top navigation bar -->
+    <!-- Load font awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The navigation bar starts -->
+<div id="navbar">
+        <a href="#home">Home</a>
+        <a href="./signup_page.html">SignUp</a>
+        <a href="./signin_page.html">SignIn</a>
+        <a href="./rent.html">Rent Equipments</a>
+      </div>
+    <!-- The navigation bar ends-->
+      <br>
+    <!-- Cards for events-->
+
+
+    <div class="row">
+            <div class="column">
+              <div class="card">card1
+                    <button type="button" class="block" onclick="">Register for event</button>
+              </div>
+            </div>
+    </div>
+    <!-- cards ends-->
+
+
+
+    <script>
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener('load',function(){
+              //  console.log(JSON.parse(this.responseText));
+              var k= (JSON.parse(this.responseText));
+              console.log(k); 
+              for(var i=0;i<2;i++){
+                var out=[k[i].leader,
+                k[i].trek_start,
+                k[i].trek_end,
+                k[i].meeting_address,
+                k[i].meeting_date,
+                k[i].meeting_time,
+                k[i].price ] 
+                console.log(out);
+            }
+            });
+            xhr.open('GET','http://localhost:4000/event',true);
+            xhr.send();
+
+
+        </script>
+   
+
+
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Generics | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        <script src="store.js" async></script>
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="store.html">STORE</a></li>
+        
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The TrekkIt Store</h1>
+        </header>
+        <section class="container content-section">
+            <h2 class="section-header">Please go ahead and rent your favourite equipments</h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <span class="shop-item-title">55 LTR Rucksack</span>
+                    <img class="shop-item-image" src="Images/Album 1.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹849.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Reversible Raincoat</span>
+                    <img class="shop-item-image" src="Images/Album 2.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹725.00</span>
+                        <button class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Shaker Bottle 500ml</span>
+                    <img class="shop-item-image" src="Images/Album 3.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹355.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Insect Repellent(100 ml)</span>
+                    <img class="shop-item-image" src="Images/Album 4.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹263.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Compass</span>
+                    <img class="shop-item-image" src="Images/Album 5.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹160.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Dome Tent</span>
+                    <img class="shop-item-image" src="Images/Album 6.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹1387.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Swiss Army Knife</span>
+                    <img class="shop-item-image" src="Images/Album 7.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹2490.00</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">USB Cigar Lighter</span>
+                    <img class="shop-item-image" src="Images/Album 8.jpg">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">₹224.99</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="container content-section">
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button" onclick="func()">PURCHASE</button>
+            <div class="pay"></div>
+        </section>
+        <script>
+            function func(){
+                var aa= document.getElementsByClassName("cart-total-price")[0].innerHTML;
+                var x=`<fieldset><form name="myForm" action="http://localhost:4000/paystack/pay" method="POST">
+                        <input id="name" type="text" name="full_name" placeholder="Full Nname">
+                        <hr>
+                        <input id="email" type="email" name="email" placeholder="Email">
+                        <hr>
+                        <input id="amount" type="number" name="amount"  >
+                        <hr>
+                        <div class="bttn pt-2"><button type="submit">pay</button></div>
+                    </form>
+                    </fieldset>
+                    `;
+             var y =document.getElementsByClassName("pay")[0];
+             y.innerHTML=x;
+             
+            }
+        </script>
+    </body>
+</html>

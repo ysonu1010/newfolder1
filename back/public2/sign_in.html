@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In to Trekk It !</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="signup_signin_data/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="signup_signin_data/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="signup_signin_data/images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="./sign_up.html" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign In</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="password" placeholder="Password"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="button" name="signin" id="signin" class="form-submit" onclick="sendData();" value="Log in"/>
+                                
+                            </div>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="signup_signin_data/vendor/jquery/jquery.min.js"></script>
+    <script src="signup_signin_data/js/main.js"></script>
+    <script>
+        function sendData() {
+                    console.log('jnvce');
+                    var email = document.getElementById('email').value;
+                    var password = document.getElementById('password').value;
+      
+                     //open page as response to login
+                     let xhr2 = new XMLHttpRequest();
+                     xhr2.addEventListener('load',function(){
+                          var k= (JSON.parse(this.responseText));
+                          console.log(k);
+                          if(k){
+                            var id=k._id;
+                            //redirect
+                            window.location.href="eventsList.html?eventID="+id+"&email="+email
+                            //creating get request to get data by event ID from joinees database
+                          }
+                          else{
+                              alert('Incorrect Email or Password. Please try again !');
+                          }
+                          
+                    });
+                    xhr2.open("GET", `http://localhost:4000/event/login?email=${email}&password=${password}`, true)
+                    xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                    xhr2.send();
+            }        
+        </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

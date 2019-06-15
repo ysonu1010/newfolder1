@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+
+    /*=====/* The navigation menu */
+/* Style the navbar */
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+
+
+/* ==========================================*/
+
+/* BOXES*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  margin: 0px 0px 10px 0px;
+  text-align: left;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* BOX BUTTONS  */
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.block1 {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: rgb(227, 237, 240);
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  
+}
+.card-img{
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+
+}
+/* BOX BUTTONS ends  */
+
+/* ========BOXES ENDS================*/
+
+
+    </style>
+    <title>TrekkIt - Happy Trekking ! !</title>
+
+  </head>
+
+
+
+  <body>
+      <div class="card1 bg-dark text-white">
+          <img class="card-img" src="header-trekking.jpg" alt="Card image">
+          <div class="card-img-overlay">
+       
+            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text">Last updated 3 mins ago</p> -->
+          </div>
+        </div>
+    <!-- Top navigation bar -->
+    <!-- Load font awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The navigation bar starts -->
+    <!--  -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
+    <!-- The navigation bar ends-->
+      <br>
+
+      <a href="./signup_page.html"" type="button" class="block1">
+        Create an Event
+        </a>
+        <p style="text-align: center">Or</p>
+        <p style="text-align: center">Join One of The Existing Events below</p>
+            
+       
+        
+
+    <!-- Cards for events-->
+    <div class="row" id="r1">
+            
+    </div>
+    <!-- cards ends-->
+
+
+    <script>
+
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener('load',function(){
+              //  console.log(JSON.parse(this.responseText));
+              var k= (JSON.parse(this.responseText));
+              console.log(k); 
+              for(var i=0;i<k.length;i++){
+                var out=[k[i].leader,
+                k[i].trek_start,
+                k[i].trek_end,
+                k[i].meeting_address,
+                k[i].meeting_date,
+                k[i].meeting_time,
+                k[i].price,
+                k[i].joinerscount, ] 
+                console.log(out);
+                var image=k[i].eventImage;
+                var url1="http://localhost:4000/uploads/"
+                var url=url1+`${image}`;
+                  var li=document.createElement('div');
+                  li.className='column';
+                   li.innerHTML=`<div class ="card" id="card1">
+                                    <img src=`+url+` alt="Smiley face" height="200" width="400">
+                                    <p>Event_Id: `+k[i]._id+`<br>
+                                          Host: `+k[i].leader+`<br>
+                                          `+k[i].trek_start+` to `+k[i].trek_end+` <br>
+                                          Meeting Point: `+k[i].meeting_address+` <br>
+                                          Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` <br>
+                                          Number of people in group: `+k[i].joinerscount+` <br>
+                                          Mail: `+k[i].email+` <br>
+                                          Password: `+k[i].password+` <br>
+                                    </p>
+                                    <a href="./register.html"" type="button" class="block">
+                                Register for the event
+                                </a>
+                                </div>`
+                                ;   
+              //    console.log(`<p>Host: `+k[i].leader+`<br> `+k[i].trek_start+` to `+k[i].trek_end+` <br> Meeting Point: `+k[i].meeting_address+` <br> Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p>`);
+
+            var list = document.getElementById("r1");
+            list.insertBefore(li, list.childNodes[0]);
+               
+            }
+            });
+            xhr.open('GET','http://localhost:4000/event',true);
+            xhr.send();
+    
+
+        </script>
+   
+
+    
+    </body>
+</html>
