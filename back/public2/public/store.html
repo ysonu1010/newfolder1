@@ -129,10 +129,10 @@
                 console.log(price);
                 console.log(typeof(price));
                 var aa= document.getElementsByClassName("cart-total-price")[0].innerHTML;
-                var x=`<form name="myForm" action="http://localhost:4000/paystack/pay" method="POST">
-                        <input id="name" type="text" name="full_name" placeholder="Full Nname" value="pathak" style="display:none">
+                var x=`<form name="myForm" action="http://localhost:4000/paystack/pay" style="margin-bottom:100px" method="POST">
+                        <input id="name" type="text" name="full_name" placeholder="Full Nname" >
                         
-                        <input id="email" type="email" name="email" placeholder="Email" value="djaypathak123@gmail.com" style="display:none">
+                        <input id="email" type="email" name="email" placeholder="Email" >
                         
                         <input id="amount" type="number" name="amount" readonly >
                         

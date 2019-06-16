@@ -12,13 +12,15 @@
 <body>
  
 <div class="container" id="cont">
-  
+  <p><h3>Members in your group with eventID:</h3></p>
+  <h3 id="membersList"></h3>
+</div>
   
 <script>
 let params = new URLSearchParams(document.location.search.substring(1));
             let id = params.get("eventid"); // is the string "Jonathan"
             console.log(id);
-
+  document.getElementById('membersList').innerHTML=id;
             var xhr5=new XMLHttpRequest();
               xhr5.addEventListener('load',function(){
                           var l= (JSON.parse(this.responseText));
