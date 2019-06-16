@@ -11,7 +11,7 @@ const _ = require('lodash');
 const path = require('path');
 const app =express();
 const port = 4000;
-var session = require('express-session');
+// var session = require('express-session');
 
 
 const {Donor} = require('./models/donor')
@@ -42,7 +42,7 @@ app.set('view engine', 'html');
 app.use(morgan('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({extended:false}));
-app.use(session({secret:"hfbfkjdkndvn" , resave:false, saveUninitialized:true}));
+// app.use(session({secret:"hfbfkjdkndvn" , resave:false, saveUninitialized:true}));
 app.use(express.static(path.join(__dirname, 'publics/')));
 app.set('view engine', pug);
 app.use('*',function(req,res,next){

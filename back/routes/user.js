@@ -10,40 +10,38 @@ router.get('/',function(req,res){
     })
  });
 router.post('/',function(req,res){
+
+
 const newUser = new userModel({
     _id:new mongoose.Types.ObjectId(),
     name:req.body.name,
     email : req.body.email,
     password:req.body.password
 });
+
 userModel.find({email:req.body.email})
 .exec()
 .then(ldr =>{
     if(ldr.length>0){
       res.send("user already exist").status(400);
-    }else{
-        newleader.save();
-        res.send("user added").status(200);
+    }
+    else{
+        newUser.save();
+        res.send('user added').status(200);
     }
 })
 .catch(err =>{
     console.log(err);
 });
-newUser.save(function(err,newEntry){
-    if(err){
-        console.log(err);
-        res.json(err).status(400);
-    }
-    else {
-        res.json(newEntry).status(201);
-    }
+
+
 });
 router.get('/login', function(req,res){
     userModel.findOne({email: req.query.email, password:req.query.password})
     .exec()
     .then(data=>{
-        req.session.user=data;
-        res.json(data).sendStatus(200);
+        // req.session.user=data;
+        res.json(data).status(200);
     })
     .catch(err=>{
         console.log(err);
@@ -57,7 +55,7 @@ router.get('/:userId',function(req,res){
         res.json(ldr).status(200);
     })
 });
-});
+
 
 
 router.delete('/:userId',function(req,res){

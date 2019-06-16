@@ -7,9 +7,9 @@ router.get('/',function(req,res){
     joinerModel.find()
     .exec()
     .then(joiners=>{
-        if(!req.session.user){
-            return res.status(404).send("Unauthorized access")
-        }
+        // if(!req.session.user){
+        //     return res.status(404).send("Unauthorized access")
+        // }
         res.json(joiners).status(200);
     })
     .catch(err =>{
@@ -24,19 +24,21 @@ router.get('/',function(req,res){
         email : req.body.email,
         mobile: req.body.mobile
     });
+
     joinerModel.find({email:req.body.email})
     .exec()
-    .then(joiners =>{
-        if(joiners.length>0){
-          res.send("joiner already exist").status(400);
-        }else{
+    .then(ldr =>{
+        if(ldr.length>0){
+        res.send("joiner already exist").status(400);
+        }
+        else{
             newJoiner.save();
-            res.send("you are joined to this event").status(200);4
+            res.send("joiner added").status(200);
         }
     })
     .catch(err =>{
         console.log(err);
-    })
+    });
 });
 
 router.get('/:eventId',function(req,res){

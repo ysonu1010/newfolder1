@@ -125,8 +125,50 @@ body {
 /* BOX BUTTONS ends  */
 
 /* ========BOXES ENDS================*/
+/* dropdown starts */
+dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown button {
+  display: block;
+  width:100%;
+}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+/* dropdown ends */
     </style>
     <title>TrekkIt - Happy Trekking ! !</title>
 
@@ -178,13 +220,22 @@ body {
         <!-- list ends -->
 
 
-      <a href="./createEvent.html" type="button" class="block1">
+        <div id="drop-ka-baap" >
+
+            
+        </div>
+        
+
+
+
+
+      <a href="#" onclick="create();" type="button" class="block1">
         Create an Event
         </a>
         <p style="text-align: center">Or</p>
         <p style="text-align: center">Join One of The Existing Events below</p>
             
-       
+      
         
 
     <!-- Cards for events-->
@@ -196,11 +247,43 @@ body {
 
     <script>
             let params = new URLSearchParams(document.location.search.substring(1));
-            let id = params.get("eventID"); // is the string "Jonathan"
+            let id = params.get("userID"); // is the string "Jonathan"
             console.log(id);
+            function create(){
+                window.location.href="createEvent.html?userID="+id
+              }
 
+              //get events created by user who is logged in using his userID passed in URL params
+              var xhr5=new XMLHttpRequest();
+              
+              xhr5.addEventListener('load',function(){
+                          //  console.log(JSON.parse(this.responseText));
+                          var l= (JSON.parse(this.responseText));
+                        // console.log(l); 
+
+                          for(var i=0;i<l.length;i++){
+                                      var eventid=l[i]._id;
+                                  
+                                    console.log(eventid);
+                                    var li=document.createElement('div');
+                                    li.className="dropdown";
+                                    li.innerHTML=` <a type="button" class="dropbtn" href="eventJoineeList.html?eventid=`+eventid+`">`+eventid+`</a> <br>`  ;   
+                                    var list = document.getElementById("drop-ka-baap");
+                                    list.append(li);
+                                    list.append(document.createElement('br'))
+                                    list.append(document.createElement('br'))
+                          }
+             });
+            
+            xhr5.open('GET',`http://localhost:4000/event/${id}`,true);
+            xhr5.send();
+           
+            
+
+          
+
+// ===========================Get joiners corresponding to event ID passed in as params of url==========      
             if(id!=='undefined'){
-// ===========================Get joiners corresponding to event ID passed in as params of url========== 
             var xhr=new XMLHttpRequest();
             xhr.addEventListener('load',function(){
               //  console.log(JSON.parse(this.responseText));
@@ -237,11 +320,12 @@ body {
 // ===============================Getting joiners corresponding to event ID passed in params of url ENDS==========   
             }
 
-            var xhr=new XMLHttpRequest();
-            xhr.addEventListener('load',function(){
+             
+            var xhr1=new XMLHttpRequest();
+            xhr1.addEventListener('load',function(){
               //  console.log(JSON.parse(this.responseText));
               var k= (JSON.parse(this.responseText));
-              console.log(k); 
+            //  console.log(k); 
               for(var i=0;i<k.length;i++){
                 var out=[k[i].leader,
                 k[i].trek_start,
@@ -251,7 +335,7 @@ body {
                 k[i].meeting_time,
                 k[i].price,
                 k[i].joinerscount, ] 
-                console.log(out);
+              //  console.log(out);
                 var image=k[i].eventImage;
                 var url1="http://localhost:4000/uploads/"
                 var url=url1+`${image}`;
@@ -285,18 +369,24 @@ body {
                
             }
             });
-            xhr.open('GET','http://localhost:4000/event',true);
-            xhr.send();
+            xhr1.open('GET','http://localhost:4000/event',true);
+            xhr1.send();
 
             function registerData(){
               window.location.href="register.html"
             }
 
-    
+
+            
 
         </script>
-   
+   <script>
 
+          function joinees(){
+              console.log("in joinee")
+            //  window.location.href="eventJoineeList.html?eventid="+a
+         }
+   </script>
     
     </body>
 </html>

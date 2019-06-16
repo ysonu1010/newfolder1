@@ -18,6 +18,7 @@ router.post('/',upload.single('eventImage'),function(req,res){
   const newEvent = new eventModel({
       _id:new mongoose.Types.ObjectId(),
       leader : req.body.leader,
+      user :req.body.user,
       trek_start : req.body.trek_start,
       trek_end : req.body.trek_end,
       meeting_date : req.body.meeting_date,
@@ -43,7 +44,7 @@ router.get('/login', function(req,res){
     eventModel.findOne({email: req.query.email, password:req.query.password})
     .exec()
     .then(data=>{
-        req.session.user=data;
+        // req.session.user=data;
         res.json(data).sendStatus(200);
     })
     .catch(err=>{
@@ -63,9 +64,9 @@ router.get('/',function(req,res){
    })
 });
 
-router.get('/:eventId',function(req,res){
-    const id = req.params.eventId;
-    eventModel.find({_id:id})
+router.get('/:userId',function(req,res){
+    const id = req.params.userId;
+    eventModel.find({user:id})
     .exec()
     .then(prod=>{
         res.json(prod).status(200);

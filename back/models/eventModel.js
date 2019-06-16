@@ -6,6 +6,11 @@ const eventSchema = mongoose.Schema({
         required: true,
         ref:'leader'
     },
+    user :{
+        type:String,
+        required:true,
+        ref:'user'
+    },
     trek_start:{type:String,required:true},
     trek_end:{type:String,required:true},
     meeting_address:{type:String,required:true},

@@ -98,29 +98,57 @@
             </div>
             <div class="cart-total">
                 <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">0</span>
+                <span class="cart-total-price" id="paise">0</span>
             </div>
-            <button class="btn btn-primary btn-purchase" type="button" onclick="func()">PURCHASE</button>
+            <button class="btn btn-primary btn-purchase" id="secondaryButton" type="button" onclick="func()">PURCHASE</button>
             <div class="pay"></div>
         </section>
         <script>
+            
+
+            
+            const primary = document.getElementById('primaryButton');
+                            const secondary = document.getElementById('secondaryButton');
+
+                            function somePrimaryAction(e){
+                            e.preventDefault();
+                            console.log('you clicked the primary button');
+                            }
+                            function clickPrimaryButton(e){
+                            e.preventDefault();
+                            console.log('you clicked the secondary button');
+                            primary.click();
+                            }
+
+                            primary.addEventListener("click", somePrimaryAction, false);
+                            secondary.addEventListener("click", clickPrimaryButton, false);
             function func(){
+                
+                var amt = document.getElementById('paise');
+                var price = parseInt(amt.innerText.replace('₹', ''))
+                console.log(price);
+                console.log(typeof(price));
                 var aa= document.getElementsByClassName("cart-total-price")[0].innerHTML;
-                var x=`<fieldset><form name="myForm" action="http://localhost:4000/paystack/pay" method="POST">
-                        <input id="name" type="text" name="full_name" placeholder="Full Nname">
-                        <hr>
-                        <input id="email" type="email" name="email" placeholder="Email">
-                        <hr>
-                        <input id="amount" type="number" name="amount"  >
-                        <hr>
-                        <div class="bttn pt-2"><button type="submit">pay</button></div>
+                var x=`<form name="myForm" action="http://localhost:4000/paystack/pay" method="POST">
+                        <input id="name" type="text" name="full_name" placeholder="Full Nname" value="pathak" style="display:none">
+                        
+                        <input id="email" type="email" name="email" placeholder="Email" value="djaypathak123@gmail.com" style="display:none">
+                        
+                        <input id="amount" type="number" name="amount" readonly >
+                        
+                        <div class="bttn pt-2"><button type="submit" id="primaryButton" >pay</button></div>
                     </form>
-                    </fieldset>
                     `;
              var y =document.getElementsByClassName("pay")[0];
              y.innerHTML=x;
-             
-            }
+            document.getElementById('amount').value=price; 
+                    
+
+                            
+                }
+                
+          
+
         </script>
     </body>
 </html>
