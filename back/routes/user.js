@@ -26,7 +26,15 @@ userModel.find({email:req.body.email})
       res.send("user already exist").status(400);
     }
     else{
-        newUser.save();
+        newUser.save(function(err,newEntry){
+            if(err){
+                console.log(err);
+                res.json(err).status(400);
+            }
+            else {
+                res.status(201);
+            }
+        });
         res.send('user added').status(200);
     }
 })

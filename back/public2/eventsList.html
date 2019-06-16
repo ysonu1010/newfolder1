@@ -214,14 +214,11 @@ dropbtn {
       <br>
 
 
-      <!-- List of participants in event starts -->
-      <div class="w3-container" id="r2">
-        </div>
-        <!-- list ends -->
+     
 
 
         <div id="drop-ka-baap" >
-
+              <h3><b>Events created by you:</b></h3>
             
         </div>
         
@@ -259,7 +256,7 @@ dropbtn {
               xhr5.addEventListener('load',function(){
                           //  console.log(JSON.parse(this.responseText));
                           var l= (JSON.parse(this.responseText));
-                        // console.log(l); 
+                         console.log(l); 
 
                           for(var i=0;i<l.length;i++){
                                       var eventid=l[i]._id;
@@ -267,7 +264,7 @@ dropbtn {
                                     console.log(eventid);
                                     var li=document.createElement('div');
                                     li.className="dropdown";
-                                    li.innerHTML=` <a type="button" class="dropbtn" href="eventJoineeList.html?eventid=`+eventid+`">`+eventid+`</a> <br>`  ;   
+                                    li.innerHTML=` <a type="text" style="margin-left:auto; font-size:24px;" class="dropbtn" href="eventJoineeList.html?eventid=`+eventid+`"> `+(i+1)+`.`+l[i].trek_start+` <b>TO</b> `+l[i].trek_end+`</a> <br>`  ;   
                                     var list = document.getElementById("drop-ka-baap");
                                     list.append(li);
                                     list.append(document.createElement('br'))
@@ -279,48 +276,7 @@ dropbtn {
             xhr5.send();
            
             
-
-          
-
-// ===========================Get joiners corresponding to event ID passed in as params of url==========      
-            if(id!=='undefined'){
-            var xhr=new XMLHttpRequest();
-            xhr.addEventListener('load',function(){
-              //  console.log(JSON.parse(this.responseText));
-              var k= (JSON.parse(this.responseText));
-              console.log(k); 
-              if(k.length!==0){
-                              {
-                                    var h2=document.createElement('h2');
-                                    h2.innerHTML="Participants in your event:"
-                                    var list = document.getElementById("r2");
-                                    list.appendChild(h2);
-                              }
-                                  
-                            for(var i=0;i<k.length;i++){
-                              var ul=document.createElement('ul');
-                                ul.className='w3-ul w3-card-4';
-                                ul.innerHTML=`   <li class="w3-bar">
-                                                <img src="avatar.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                                                <div class="w3-bar-item">
-                                                  <span class="w3-large">`+k[i].name+`</span><br>
-                                                  <span>`+k[i].email+`</span>
-                                                </div>
-                                              </li>`   ;   
-                          
-                          var list = document.getElementById("r2");
-                          list.appendChild(ul);
-                        
-                            }
-                              
-                            }
-            });
-            xhr.open('GET',`http://localhost:4000/joiner/${id}`,true);
-            xhr.send();
-// ===============================Getting joiners corresponding to event ID passed in params of url ENDS==========   
-            }
-
-             
+  
             var xhr1=new XMLHttpRequest();
             xhr1.addEventListener('load',function(){
               //  console.log(JSON.parse(this.responseText));
@@ -342,7 +298,7 @@ dropbtn {
                   var li=document.createElement('div');
                   li.className='column';
                    li.innerHTML=`<div class ="card" id="card1">
-                                    <form>
+                                  
                                     <img src=`+url+` alt="Smiley face" height="200" width="400">
                                     <label for="id">`+k[i].trek_start+` to `+k[i].trek_end+`</label><br>
                                     <label for="id">Event ID</label>
@@ -354,13 +310,13 @@ dropbtn {
                                           `+k[i].meeting_address+` <br>
                                           <label for="id">Schedule</label>
                                           `+k[i].meeting_date+` `+k[i].meeting_time+` <br>
-                                          <label for="id">Members Count</label>
-                                          `+k[i].joinerscount+` <br>
+                                          
                                           <label for="id">Host_Email</label>
                                           `+k[i].email+` <br>
                                     </p>
-                                    <input  type="button" class="block" onclick="registerData();" value="Register for the event"/>
-                                    </form>
+                                  
+                                    <a type="button" class="block" href="register.html?eventid=`+k[i]._id+`">"Register for the event"</a>
+                                  
                                 </div>`
                                 ;   
               
@@ -376,7 +332,7 @@ dropbtn {
               window.location.href="register.html"
             }
 
-
+            
             
 
         </script>
